@@ -19,6 +19,7 @@
     "@payloadcms/next": "3.0.0-beta.122",
     "@payloadcms/payload-cloud": "beta",
     "@payloadcms/richtext-lexical": "3.0.0-beta.122",
+    "axios": "^1.7.7",
     "cross-env": "^7.0.3",
     "graphql": "^16.9.0",
     "next": "15.0.0",

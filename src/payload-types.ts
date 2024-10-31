@@ -13,6 +13,7 @@ export interface Config {
   collections: {
     users: User;
     media: Media;
+    'fuel-prices': FuelPrice;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
     'payload-migrations': PayloadMigration;
@@ -20,6 +21,7 @@ export interface Config {
   collectionsSelect?: {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    'fuel-prices': FuelPricesSelect<false> | FuelPricesSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
     'payload-migrations': PayloadMigrationsSelect<false> | PayloadMigrationsSelect<true>;
@@ -94,6 +96,26 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fuel-prices".
+ */
+export interface FuelPrice {
+  id: number;
+  stationId: string;
+  name?: string | null;
+  brand?: string | null;
+  address?: string | null;
+  latitude?: number | null;
+  longitude?: number | null;
+  distance?: number | null;
+  dieselPrice?: number | null;
+  e5Price?: number | null;
+  e10Price?: number | null;
+  isOpen?: boolean | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-locked-documents".
  */
 export interface PayloadLockedDocument {
@@ -106,6 +128,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'media';
         value: number | Media;
+      } | null)
+    | ({
+        relationTo: 'fuel-prices';
+        value: number | FuelPrice;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -181,6 +207,25 @@ export interface MediaSelect<T extends boolean = true> {
   height?: T;
   focalX?: T;
   focalY?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "fuel-prices_select".
+ */
+export interface FuelPricesSelect<T extends boolean = true> {
+  stationId?: T;
+  name?: T;
+  brand?: T;
+  address?: T;
+  latitude?: T;
+  longitude?: T;
+  distance?: T;
+  dieselPrice?: T;
+  e5Price?: T;
+  e10Price?: T;
+  isOpen?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
